@@ -1,0 +1,46 @@
+<div th:fragment="body" xmlns:th="http://www.w3.org/1999/xhtml">
+
+    <div class="py-5 text-center">
+        <h1>Pessoas</h1>
+        <p class="lead">Aplicação para cadastro de pessoas</p>
+    </div>
+    <p class="alert alert-danger" role="alert" th:if="${error != null}" th:text="${error}" id="message" />
+    <form action="save" method="post" th:object="${pessoa}">
+        <div class="form-group row" hidden="true">
+            <label class="col-sm-2 col-form-label">ID:</label>
+            <div class="col-sm-10">
+                <input th:field="*{id}" class="form-control" id="id">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nome:</label>
+            <div class="col-sm-10">
+                <input th:field="*{nome}" class="form-control" id="nome">
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+                <input th:field="*{email}" class="form-control" id="email">
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">CPF:</label>
+            <div class="col-sm-10">
+                <input th:field="*{cpf}" class="form-control" id="cpf">
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Data de Nascimento:</label>
+            <div class="col-sm-10">
+                <input th:field="*{dtNascimento}" type="date" class="form-control" id="dtNascimento">
+            </div>
+        </div>
+
+        <input type="submit" value="Salvar" class="btn btn-block btn-outline-secondary" id="saveButton">
+    </form>
+
+</div>

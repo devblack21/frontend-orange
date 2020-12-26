@@ -1,0 +1,45 @@
+<div th:fragment="body" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="py-5 text-center">
+        <h1>Pessoas</h1>
+        <p class="lead">Aplicação para cadastro de pessoas</p>
+    </div>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert" th:if="${success != null}" >
+        <p th:text="${success}"/>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${error != null}">
+        <p th:text="${error}"/>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div th:switch="${pessoas.size()}">
+        <h2 th:case="0">Nenhuma pessoa cadastrada</h2>
+        <div th:case="*">
+            <table id="todoTable" class="table table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>CPF</th>
+                    <th>Data de Nascimento</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="pessoa : ${pessoas}">
+                    <td th:text="${pessoa.nome}"></td>
+                    <td th:text="${pessoa.email}"></td>
+                    <td th:text="${pessoa.cpf}"></td>
+                    <td th:text="${pessoa.dtNascimento}"></td>
+                    <td><a class="btn btn-outline-danger btn-sm" th:href="@{/delete/{id}(id=${pessoa.id})}">Remover</a>
+                        <a class="btn btn-outline-info btn-sm" th:href="@{/add?id={id}(id=${pessoa.id})}">Alterar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <a class="btn btn-outline-secondary" role="button" th:href="@{/add}" id="addTodo">Add Pessoa</a>
+</div>
+
